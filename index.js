@@ -13,12 +13,15 @@ drumsNames = ['w','a','s','d','j','k','l'];
 
 document.addEventListener("keydown", function (event) {
   playSound(event.key);
+  pressAnimation(event.key);
 } );
 
 
 for (let index = 0; index < drumsElements.length; index++) {
   document.querySelectorAll(".set button")[index].addEventListener("click", function(){
     playSound(drumsNames[index]);
+    pressAnimation(drumsNames[index]);
+    console.log(drumsNames[index]);
     }
     );
   }
@@ -30,4 +33,16 @@ for (let index = 0; index < drumsElements.length; index++) {
           audio.play();
         }
         }
+    }
+
+    function pressAnimation(event){
+      
+      var element = document.querySelector("." + event);
+      
+      element.classList.add( "pressed");
+
+      setTimeout (function () {
+        element.classList.remove("pressed");
+      }, 100);
+
     }
